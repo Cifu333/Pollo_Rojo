@@ -20,10 +20,23 @@ public class Jump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    private void FixedUpdate()
+    {
         if (Input.GetButton("Jump"))
         {
+            if (rb.velocity.y > 0)
+                rb.velocity = rb.velocity / 2;
+
             jetPack = true;
             rb.AddForce(rb.transform.up * jetForce * Time.fixedDeltaTime, ForceMode2D.Impulse);
+            //effect.Play();
+        }
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            rb.AddForce(-rb.transform.up * jetForce / 5 * Time.fixedDeltaTime, ForceMode2D.Impulse);
             //effect.Play();
         }
     }

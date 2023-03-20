@@ -57,7 +57,7 @@ public class GroundDetector : MonoBehaviour
         }
         else
         {
-            rb.gravityScale = 4;
+            //rb.gravityScale = 2;
         }
     }
 }
