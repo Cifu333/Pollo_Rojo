@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.gameObject.tag == "Chicken")
         {
+            collision.gameObject.GetComponent<Status>().hp--;
             Destroy(collision.gameObject);
         }
     }
