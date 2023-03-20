@@ -9,6 +9,7 @@ public class Jump : MonoBehaviour
 
     private bool jetPack;
     public float jetForce = 2;
+    public float jetDown = 6;
 
     // Start is called before the first frame update
     void Start()
@@ -36,7 +37,7 @@ public class Jump : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            rb.AddForce(-rb.transform.up * jetForce / 5 * Time.fixedDeltaTime, ForceMode2D.Impulse);
+            rb.AddForce(-rb.transform.up * jetForce / jetDown * Time.fixedDeltaTime, ForceMode2D.Impulse);
             //effect.Play();
         }
     }

@@ -58,7 +58,7 @@ public class Contador : MonoBehaviour
                 time = 0;
             }
         }
-        text.text = corn.ToString("0");
+        text.text = corn.ToString();
 
     }
 }
