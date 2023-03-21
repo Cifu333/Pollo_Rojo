@@ -14,6 +14,9 @@ public class NavePrincipio : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(speed * Time.deltaTime,0);
+        transform.position += new Vector3(speed,-speed) * Time.deltaTime;
+        transform.eulerAngles += new Vector3(0, 0, 200) * Time.deltaTime;
+        if (transform.localScale.x > 0)
+            transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f) * Time.deltaTime;
     }
 }

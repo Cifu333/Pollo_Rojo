@@ -8,11 +8,10 @@ public class Enemy : MonoBehaviour
     public List<Sprite> sprites;
     CapsuleCollider2D capsule;
     private int random;
-    public int speedY;
+    private int speedY;
     // Start is called before the first frame update
     void Start()
     {
-        speedY = 1;
         random = Random.Range(0, sprites.Count);
         sr = GetComponent<SpriteRenderer>();
         capsule = GetComponent<CapsuleCollider2D>();
@@ -20,6 +19,7 @@ public class Enemy : MonoBehaviour
         switch (random)
         {
             case 0:
+                speedY = 1;
                 capsule.size = new Vector2(1.25f, 1.25f);
                 break;
             case 1:
@@ -52,11 +52,15 @@ public class Enemy : MonoBehaviour
                 transform.position += new Vector3(-2, -2) * Time.deltaTime;
                 break;
             case 2:
+                transform.eulerAngles += new Vector3(0, 0, 30) * Time.deltaTime;
+                transform.position += new Vector3(-1.5f,0) * Time.deltaTime;
                 break;
             case 3:
-                capsule.size = new Vector2(2.9f, 1);
+                transform.eulerAngles += new Vector3(0, 0, 70) * Time.deltaTime; 
                 break;
         }
+        if (transform.position.x < -18)
+            Destroy(gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

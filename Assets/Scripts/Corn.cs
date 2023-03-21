@@ -14,7 +14,9 @@ public class Corn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.eulerAngles += new Vector3(0, 0, 50) * Time.deltaTime;
+        if (transform.position.x < -18)
+            Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D (Collider2D collision)
