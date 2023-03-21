@@ -4,16 +4,59 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    SpriteRenderer sr;
+    public List<Sprite> sprites;
+    CapsuleCollider2D capsule;
+    private int random;
+    public int speedY;
     // Start is called before the first frame update
     void Start()
     {
-        
+        speedY = 1;
+        random = Random.Range(0, sprites.Count);
+        sr = GetComponent<SpriteRenderer>();
+        capsule = GetComponent<CapsuleCollider2D>();
+        sr.sprite = sprites[random];
+        switch (random)
+        {
+            case 0:
+                capsule.size = new Vector2(1.25f, 1.25f);
+                break;
+            case 1:
+                capsule.offset = new Vector2(-1.05f, -1);
+                capsule.size = new Vector2(2.85f, 1.55f);
+                transform.position = new Vector2(Random.Range(-2.35f, 10), 6.98f);
+                break;
+            case 2:
+                break;
+            case 3:
+                capsule.size = new Vector2(2.9f, 1);
+                break;
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        switch (random)
+        {
+            case 0:
+                if (transform.position.y >= 4.35f && speedY > 0)
+                    speedY = -speedY;
+                if (transform.position.y <= -4.36f && speedY < 0)
+                    speedY = -speedY;
+                transform.position += new Vector3(-1, speedY) * Time.deltaTime;
+                break;
+            case 1:
+                transform.position += new Vector3(-2, -2) * Time.deltaTime;
+                break;
+            case 2:
+                break;
+            case 3:
+                capsule.size = new Vector2(2.9f, 1);
+                break;
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
