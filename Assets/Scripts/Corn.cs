@@ -17,6 +17,7 @@ public class Corn : MonoBehaviour
         transform.eulerAngles += new Vector3(0, 0, 50) * Time.deltaTime;
         if (transform.position.x < -18)
             Destroy(gameObject);
+        transform.position += new Vector3(-2, 0, 0) * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D (Collider2D collision)
