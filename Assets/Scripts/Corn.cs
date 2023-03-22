@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Corn : MonoBehaviour
 {
-    public int type;
+    public GameObject sound;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,8 @@ public class Corn : MonoBehaviour
 
             if (gameObject.tag == "Cob")
                 collision.gameObject.GetComponent<Status>().corn += 10;
-            
+
+            Instantiate(sound);
             Destroy(gameObject);
         }
     }
