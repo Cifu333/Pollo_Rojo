@@ -44,7 +44,8 @@ public class Enemy : MonoBehaviour
             case 3:
                 speedY = 1;
                 capsule.direction = CapsuleDirection2D.Horizontal;
-                capsule.size = new Vector2(2.88f, 1.78f);
+                capsule.offset = new Vector2(0f, -0.28f);
+                capsule.size = new Vector2(3.12f, 1.06f);
                 break;
             case 4:
                 speedY = 1f;

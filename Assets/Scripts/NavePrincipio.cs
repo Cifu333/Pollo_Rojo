@@ -6,6 +6,7 @@ public class NavePrincipio : MonoBehaviour
 {
     public GameObject corn;
     public GameObject cob;
+    public GameObject goldCob;
     public int multiply;
     public float speed;
     private float time;
@@ -36,7 +37,9 @@ public class NavePrincipio : MonoBehaviour
                 if (Random.Range(1, 10) <= 1)
                     speed = -speed;
 
-            if (Random.Range(1,100) <= 25)
+            if (Random.Range(1, 100) <= 5)
+                Instantiate(goldCob, transform.position, Quaternion.identity);
+            else if (Random.Range(1,100) <= 15)
                 Instantiate(cob, transform.position, Quaternion.identity);
             else
                 Instantiate(corn, transform.position, Quaternion.identity);

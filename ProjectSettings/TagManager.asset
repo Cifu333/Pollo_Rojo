@@ -8,6 +8,7 @@ TagManager:
   - Corn
   - Cob
   - Enemy
+  - GoldCob
   layers:
   - Default
   - TransparentFX

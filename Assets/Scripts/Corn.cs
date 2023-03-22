@@ -31,6 +31,9 @@ public class Corn : MonoBehaviour
             if (gameObject.tag == "Cob")
                 collision.gameObject.GetComponent<Status>().corn += 10;
 
+            if (gameObject.tag == "GoldCob")
+                collision.gameObject.GetComponent<Status>().corn += 35;
+
             Instantiate(SoundCorn);
             Destroy(gameObject);
         }
