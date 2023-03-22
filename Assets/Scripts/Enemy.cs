@@ -43,7 +43,8 @@ public class Enemy : MonoBehaviour
                 break;
             case 3:
                 speedY = 1;
-                capsule.size = new Vector2(2.9f, 1);
+                capsule.direction = CapsuleDirection2D.Horizontal;
+                capsule.size = new Vector2(2.88f, 1.78f);
                 break;
             case 4:
                 speedY = 1f;
@@ -108,7 +109,6 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "Chicken")
         {
             collision.gameObject.GetComponent<Status>().hp--;
-            Destroy(collision.gameObject);
         }
     }
 }

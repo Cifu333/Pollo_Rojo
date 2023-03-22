@@ -6,7 +6,7 @@ public class Generator : MonoBehaviour
 {
     public GameObject enemy;
     public float limity = 4f;
-    public int maxEnemys = 8;
+    public int maxEnemys = 6;
     private int enemys;
     public int enemyCount;
     public GameObject player;
