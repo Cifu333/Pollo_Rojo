@@ -36,7 +36,7 @@ public class DeadMenu : MonoBehaviour
 
     public void Retry()
     {
-        SceneManager.LoadScene("DaniScene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         isPaused = false;
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
@@ -44,7 +44,7 @@ public class DeadMenu : MonoBehaviour
     }
     public void Menu()
     {
-        SceneManager.LoadScene("NereaScene");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         isPaused = false;
         Time.timeScale = 1;
         pauseMenu.SetActive(false);

@@ -24,18 +24,19 @@ public class Jump : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetButton("Jump"))
+        if (Input.GetKey(KeyCode.X))
         {
-            if (rb.velocity.y > 0)
-                rb.velocity = rb.velocity / 2;
-
-            rb.AddForce(rb.transform.up * jetForce * Time.fixedDeltaTime, ForceMode2D.Impulse);
+            rb.AddForce(rb.transform.up * jetForce / jetDown * Time.fixedDeltaTime, ForceMode2D.Impulse);
             //effect.Play();
         }
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.Z))
         {
             rb.AddForce(-rb.transform.up * jetForce / jetDown * Time.fixedDeltaTime, ForceMode2D.Impulse);
             //effect.Play();
+        }
+        if ((rb.velocity.y > 0 || rb.velocity.y < 0) && !Input.GetKey(KeyCode.X) && !Input.GetKey(KeyCode.Z))
+        {
+            rb.velocity = rb.velocity / 2 * Time.deltaTime;
         }
     }
 
