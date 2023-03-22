@@ -6,14 +6,18 @@ public class Enemy : MonoBehaviour
 {
     SpriteRenderer sr;
     public List<Sprite> sprites;
+    public GameObject player;
+    Animator anim;
     CapsuleCollider2D capsule;
     Generator generator;
-    private int random;
-    private int speedY;
+    public int random;
+    private float speedY;
     private float time;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Chicken");
+        anim = GetComponent<Animator>();
         time = 0;
         random = Random.Range(0, sprites.Count);
         generator = transform.parent.GetComponent<Generator>();
@@ -29,7 +33,7 @@ public class Enemy : MonoBehaviour
             case 1:
                 capsule.offset = new Vector2(-1.05f, -1);
                 capsule.size = new Vector2(2.85f, 1.55f);
-                transform.position = new Vector2(Random.Range(-2.35f, 10), 6.98f);
+                transform.position = new Vector2(Random.Range(1.3f, 13), 7.5f);
                 break;
             case 2:
                 capsule.direction = CapsuleDirection2D.Horizontal;
@@ -40,8 +44,13 @@ public class Enemy : MonoBehaviour
                 speedY = 1;
                 capsule.size = new Vector2(2.9f, 1);
                 break;
+            case 4:
+                speedY = 1f;
+                capsule.size = new Vector2(1.3f, 1.75f);
+                capsule.offset = new Vector2(0, -0.26f);
+                break;
         }
-
+        anim.SetInteger("EnemyType", random);
     }
 
     // Update is called once per frame
@@ -57,7 +66,7 @@ public class Enemy : MonoBehaviour
                 transform.position += new Vector3(-3.5f, speedY) * Time.deltaTime;
                 break;
             case 1:
-                transform.position += new Vector3(-3, -3) * Time.deltaTime;
+                transform.position += new Vector3(-5, -3) * Time.deltaTime;
                 break;
             case 2:
                 transform.eulerAngles += new Vector3(0, 0, 30) * Time.deltaTime;
@@ -76,6 +85,15 @@ public class Enemy : MonoBehaviour
                         speedY = -speedY;
                     time = 0;
                 }
+                break;
+            case 4:
+                if (player.gameObject.transform.position.y > transform.position.y)
+                    if (speedY < 0)
+                        speedY = -speedY;
+                if (player.gameObject.transform.position.y < transform.position.y)
+                    if (speedY > 0)
+                        speedY = -speedY;
+                transform.position += new Vector3(-3, speedY) * Time.deltaTime;
                 break;
         }
         if (transform.position.x < -18)

@@ -30,10 +30,10 @@ public class NavePrincipio : MonoBehaviour
             transform.position += new Vector3(speed * 6, 0) * Time.deltaTime;
         }
         time += Time.deltaTime;
-        if (time > 2f)
+        if (time > 1.5f)
         {
-            if (transform.position.x < 9.15)
-                if (Random.Range(1, 10) <= 3)
+            if (transform.position.x >= 9.15)
+                if (Random.Range(1, 10) <= 1)
                     speed = -speed;
 
             if (Random.Range(1,100) <= 25)
