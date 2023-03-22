@@ -42,4 +42,12 @@ public class DeadMenu : MonoBehaviour
         pauseMenu.SetActive(false);
         Debug.Log("Loading");
     }
+    public void Menu()
+    {
+        SceneManager.LoadScene("NereaScene");
+        isPaused = false;
+        Time.timeScale = 1;
+        pauseMenu.SetActive(false);
+        Debug.Log("Loading");
+    }
 }
