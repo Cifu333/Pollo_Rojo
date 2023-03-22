@@ -6,34 +6,53 @@ public class Enemy : MonoBehaviour
 {
     SpriteRenderer sr;
     public List<Sprite> sprites;
+    public GameObject player;
+    Animator anim;
     CapsuleCollider2D capsule;
-    private int random;
-    private int speedY;
+    Generator generator;
+    public int random;
+    private float speedY;
+    private float time;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Chicken");
+        anim = GetComponent<Animator>();
+        time = 0;
         random = Random.Range(0, sprites.Count);
+        generator = transform.parent.GetComponent<Generator>();
         sr = GetComponent<SpriteRenderer>();
         capsule = GetComponent<CapsuleCollider2D>();
         sr.sprite = sprites[random];
         switch (random)
         {
             case 0:
-                speedY = 1;
-                capsule.size = new Vector2(1.25f, 1.25f);
+                speedY = 4;
+                capsule.size = new Vector2(1f, 1.25f);
                 break;
             case 1:
-                capsule.offset = new Vector2(-1.05f, -1);
-                capsule.size = new Vector2(2.85f, 1.55f);
-                transform.position = new Vector2(Random.Range(-2.35f, 10), 6.98f);
+                capsule.offset = new Vector2(-1.37f, -0.88f);
+                capsule.size = new Vector2(2.73f, 1.1f);
+                capsule.direction = CapsuleDirection2D.Horizontal;
+                transform.position = new Vector2(Random.Range(1.3f, 13), 7.5f);
                 break;
             case 2:
+                capsule.direction = CapsuleDirection2D.Horizontal;
+                capsule.offset = new Vector2(0.01f, 0.04f);
+                capsule.size = new Vector2(2.29f, 1.54f);
                 break;
             case 3:
-                capsule.size = new Vector2(2.9f, 1);
+                speedY = 1;
+                capsule.direction = CapsuleDirection2D.Horizontal;
+                capsule.size = new Vector2(2.88f, 1.78f);
+                break;
+            case 4:
+                speedY = 1f;
+                capsule.size = new Vector2(1.42f, 1.3f);
+                capsule.offset = new Vector2(0, -0.11f);
                 break;
         }
-
+        anim.SetInteger("EnemyType", random);
     }
 
     // Update is called once per frame
@@ -46,28 +65,50 @@ public class Enemy : MonoBehaviour
                     speedY = -speedY;
                 if (transform.position.y <= -4.36f && speedY < 0)
                     speedY = -speedY;
-                transform.position += new Vector3(-1, speedY) * Time.deltaTime;
+                transform.position += new Vector3(-3.5f, speedY) * Time.deltaTime;
                 break;
             case 1:
-                transform.position += new Vector3(-2, -2) * Time.deltaTime;
+                transform.position += new Vector3(-5, -3) * Time.deltaTime;
                 break;
             case 2:
                 transform.eulerAngles += new Vector3(0, 0, 30) * Time.deltaTime;
-                transform.position += new Vector3(-1.5f,0) * Time.deltaTime;
+                transform.position += new Vector3(-3f,0) * Time.deltaTime;
                 break;
             case 3:
-                transform.eulerAngles += new Vector3(0, 0, 70) * Time.deltaTime; 
+                transform.eulerAngles += new Vector3(0, 0, 70) * Time.deltaTime;
+                transform.position += new Vector3(-3f, speedY) * Time.deltaTime;
+                if (transform.position.y >= 3.35f && speedY > 0)
+                    speedY = -speedY;
+                if (transform.position.y <= -3.36f && speedY < 0)
+                    speedY = -speedY;
+                time += Time.deltaTime;
+                if (time >= 2) {
+                    if (Random.Range(1, 10) <= 2)
+                        speedY = -speedY;
+                    time = 0;
+                }
+                break;
+            case 4:
+                if (player.gameObject.transform.position.y > transform.position.y)
+                    if (speedY < 0)
+                        speedY = -speedY;
+                if (player.gameObject.transform.position.y < transform.position.y)
+                    if (speedY > 0)
+                        speedY = -speedY;
+                transform.position += new Vector3(-3, speedY) * Time.deltaTime;
                 break;
         }
         if (transform.position.x < -18)
+        {
             Destroy(gameObject);
+            generator.enemyCount--;
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Chicken")
         {
             collision.gameObject.GetComponent<Status>().hp--;
-            Destroy(collision.gameObject);
         }
     }
 }

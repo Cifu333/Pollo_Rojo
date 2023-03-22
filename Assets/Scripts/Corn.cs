@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class Corn : MonoBehaviour
 {
-    public int type;
+    public GameObject sound;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,7 @@ public class Corn : MonoBehaviour
         transform.eulerAngles += new Vector3(0, 0, 50) * Time.deltaTime;
         if (transform.position.x < -18)
             Destroy(gameObject);
+        transform.position += new Vector3(-2, 0, 0) * Time.deltaTime;
     }
 
     private void OnTriggerEnter2D (Collider2D collision)
@@ -28,7 +30,8 @@ public class Corn : MonoBehaviour
 
             if (gameObject.tag == "Cob")
                 collision.gameObject.GetComponent<Status>().corn += 10;
-            
+
+            Instantiate(sound);
             Destroy(gameObject);
         }
     }
