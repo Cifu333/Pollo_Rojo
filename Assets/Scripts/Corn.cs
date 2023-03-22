@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 
 public class Corn : MonoBehaviour
 {
-    public GameObject sound;
+    public GameObject SoundCorn;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +31,7 @@ public class Corn : MonoBehaviour
             if (gameObject.tag == "Cob")
                 collision.gameObject.GetComponent<Status>().corn += 10;
 
-            Instantiate(sound);
+            Instantiate(SoundCorn);
             Destroy(gameObject);
         }
     }

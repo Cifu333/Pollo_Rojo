@@ -1031,8 +1031,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4211b06712f8fee48becf265c6499c7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SoundDead: {fileID: 0}
   corn: 0
   hp: 0
+  particlesDead:
+  - {fileID: 2271454464877409147, guid: a7a788f648b95cf4a9db95c1f6092a87, type: 3}
+  - {fileID: 907316860874748285, guid: f5ba4b5fe3509fe479a41fd6cce668a2, type: 3}
+  - {fileID: 6746679488436145041, guid: 4203ebf61d030b441a725853da1be397, type: 3}
+  - {fileID: 8330996871916607311, guid: 13b0ffb8678a9624998f6668c79ea7dc, type: 3}
+  - {fileID: 6749914148370818355, guid: 5669bd65f1b3fb14ca988300f585d4bf, type: 3}
 --- !u!114 &466462926
 MonoBehaviour:
   m_ObjectHideFlags: 0

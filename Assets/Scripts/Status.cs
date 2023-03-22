@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Audio;
 public class Status : MonoBehaviour
 {
+    public GameObject SoundDead;
     public int corn;
     public int hp;
     public List<GameObject> particlesDead;
@@ -21,6 +22,7 @@ public class Status : MonoBehaviour
         {
             for (int i = 0; i < particlesDead.Count; i++)
                 Instantiate(particlesDead[i], transform.position, Quaternion.identity);
+            Instantiate(SoundDead);
             Destroy(gameObject);
         }
     }
