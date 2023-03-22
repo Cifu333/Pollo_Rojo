@@ -6,7 +6,7 @@ public class Generator : MonoBehaviour
 {
     public GameObject enemy;
     public float limity = 4f;
-    public int maxEnemys = 8;
+    public int maxEnemys = 6;
     private int enemys;
     public int enemyCount;
     public GameObject player;
@@ -33,7 +33,7 @@ public class Generator : MonoBehaviour
             temp.gameObject.transform.parent = gameObject.transform;
             enemyCount++;
         }
-        if ((int)(corn.corn / 50) > dificulty)
+        if ((int)(corn.corn / 60) > dificulty)
         {
             dificulty++;
             if (enemys < maxEnemys)
