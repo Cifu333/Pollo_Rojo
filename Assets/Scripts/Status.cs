@@ -6,6 +6,7 @@ public class Status : MonoBehaviour
 {
     public int corn;
     public int hp;
+    public List<GameObject> particlesDead;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,10 @@ public class Status : MonoBehaviour
     void Update()
     {
         if (hp <= 0)
+        {
+            for (int i = 0; i < particlesDead.Count; i++)
+                Instantiate(particlesDead[i], transform.position, Quaternion.identity);
             Destroy(gameObject);
+        }
     }
 }
