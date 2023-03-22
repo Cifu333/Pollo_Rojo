@@ -6,8 +6,6 @@ public class Jump : MonoBehaviour
 {
     Animator anim;
     Rigidbody2D rb;
-
-    private bool jetPack;
     public float jetForce = 2;
     public float jetDown = 6;
 
@@ -31,7 +29,6 @@ public class Jump : MonoBehaviour
             if (rb.velocity.y > 0)
                 rb.velocity = rb.velocity / 2;
 
-            jetPack = true;
             rb.AddForce(rb.transform.up * jetForce * Time.fixedDeltaTime, ForceMode2D.Impulse);
             //effect.Play();
         }
