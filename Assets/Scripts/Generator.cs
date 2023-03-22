@@ -33,7 +33,7 @@ public class Generator : MonoBehaviour
             temp.gameObject.transform.parent = gameObject.transform;
             enemyCount++;
         }
-        if ((int)(corn.corn / 50) > dificulty)
+        if ((int)(corn.corn / 60) > dificulty)
         {
             dificulty++;
             if (enemys < maxEnemys)

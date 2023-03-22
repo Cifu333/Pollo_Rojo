@@ -28,17 +28,18 @@ public class Enemy : MonoBehaviour
         {
             case 0:
                 speedY = 4;
-                capsule.size = new Vector2(1.25f, 1.25f);
+                capsule.size = new Vector2(1f, 1.25f);
                 break;
             case 1:
-                capsule.offset = new Vector2(-1.05f, -1);
-                capsule.size = new Vector2(2.85f, 1.55f);
+                capsule.offset = new Vector2(-1.37f, -0.88f);
+                capsule.size = new Vector2(2.73f, 1.1f);
+                capsule.direction = CapsuleDirection2D.Horizontal;
                 transform.position = new Vector2(Random.Range(1.3f, 13), 7.5f);
                 break;
             case 2:
                 capsule.direction = CapsuleDirection2D.Horizontal;
-                capsule.offset = new Vector2(0.04f, 0.07f);
-                capsule.size = new Vector2(1f, 0.82f);
+                capsule.offset = new Vector2(0.01f, 0.04f);
+                capsule.size = new Vector2(2.29f, 1.54f);
                 break;
             case 3:
                 speedY = 1;
@@ -46,8 +47,8 @@ public class Enemy : MonoBehaviour
                 break;
             case 4:
                 speedY = 1f;
-                capsule.size = new Vector2(1.3f, 1.75f);
-                capsule.offset = new Vector2(0, -0.26f);
+                capsule.size = new Vector2(1.42f, 1.3f);
+                capsule.offset = new Vector2(0, -0.11f);
                 break;
         }
         anim.SetInteger("EnemyType", random);

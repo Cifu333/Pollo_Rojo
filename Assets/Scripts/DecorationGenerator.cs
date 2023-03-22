@@ -20,7 +20,7 @@ public class DecorationGenerator : MonoBehaviour
 
         if (time > 1f)
         {
-            if (Random.Range(1, 100) <= 1)
+            if (Random.Range(1, 100) <= 3)
                 Instantiate(planet, new Vector3(transform.position.x, Random.Range(-3.35f, 3.35f)), Quaternion.identity);
             else
                 Instantiate(star, new Vector3(transform.position.x, Random.Range(-4.35f,4.35f)), Quaternion.identity);
